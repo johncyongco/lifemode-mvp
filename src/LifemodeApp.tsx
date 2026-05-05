@@ -84,7 +84,7 @@ type SavedSession = {
   thought: string;
   messages: { role: string; text: string }[];
   exchangeCount: number;
-  status: "in_progress" | "completed";
+  status: string;
   clarityData: { micro: string; macro: string; perspective: string } | null;
   createdAt: string;
 };
@@ -1418,7 +1418,7 @@ function SessionDetail({ setScreen, sessionState, setSessionState }: { setScreen
           const clarity = await getClarity({
             sessionId: session.id,
             fullConversation: session.messages,
-            mode: session.mode || "quick",
+            mode: (session.mode || "quick") as "quick" | "deep",
           });
           let clarityData = clarity;
           if (typeof clarity?.output === "string") {
@@ -1427,7 +1427,7 @@ function SessionDetail({ setScreen, sessionState, setSessionState }: { setScreen
           setSessionState((prev) => ({
             ...prev,
             sessions: prev.sessions.map((s) =>
-              s.id === session.id ? { ...s, status: "archived" as const, clarityData } : s
+              s.id === session.id ? { ...s, status: "archived", clarityData } : s
             ),
           }));
         } catch {
@@ -1546,12 +1546,12 @@ function ChatScreen({
 
   const mode = (sessionState as any).mode || "deep";
 
-  const initKey = React.useRef(Symbol());
+  const initKey = React.useRef<symbol>(Symbol());
 
   React.useEffect(() => {
     if (savedSession) return;
     if (!initKey.current) return;
-    initKey.current = null;
+    (initKey as any).current = null;
     setWaiting(true);
     startSession({
       intent: sessionState.intent || "Career direction",

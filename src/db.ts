@@ -10,7 +10,7 @@ export async function saveSession(session: {
   thought: string;
   messages: { role: string; text: string }[];
   exchange_count: number;
-  status: "in_progress" | "completed";
+  status: string;
   clarity_data: { micro: string; macro: string; perspective: string } | null;
 }) {
   if (!UUID_RE.test(session.id)) return { error: null };
