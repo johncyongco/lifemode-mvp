@@ -507,9 +507,9 @@ function ChatScreen({ setScreen }: { setScreen: (screen: Screen) => void }) {
 
   return (
     <PhoneFrame>
-      <div className="relative min-h-[100dvh]">
+      <div className="flex h-[100dvh] flex-col">
         <Header title="Career Direction" subtitle="Quick clarity • 8:42" onBack={() => setScreen("home")} />
-        <div className="px-5 pt-7 space-y-3">
+        <div className="flex-1 overflow-y-auto px-5 pt-7 space-y-3 pb-4">
           <div className="relative">
             <div className="absolute left-0 top-1 grid h-7 w-7 place-items-center rounded-full bg-[#16191E]">
               <Sparkles size={14} color="#F4C15D" fill="#F4C15D" />
@@ -531,7 +531,7 @@ function ChatScreen({ setScreen }: { setScreen: (screen: Screen) => void }) {
           <Assistant>What part of staying feels safest right now?</Assistant>
           <div className="ml-10 text-[10px] text-[#888]">{new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</div>
         </div>
-        <div className="absolute bottom-6 left-5 right-5 flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2 px-5 pb-6 pt-2">
           <div className="flex h-12 flex-1 items-center rounded-2xl border bg-white px-4 text-xs text-[#999]" style={{ borderColor: colors.border }}>
             Type your message...
             <Mic className="ml-auto" size={16} />

@@ -1730,9 +1730,9 @@ function ChatScreen({
 
   return (
     <PhoneFrame>
-      <div className="relative min-h-[100dvh]">
+      <div className="flex h-[100dvh] flex-col">
         <Header title={sessionState.intent || "Session"} subtitle={subtitle} onBack={handleBack} />
-        <div className="px-5 pt-7 space-y-3 pb-28 overflow-y-auto max-h-[calc(100dvh-200px)]">
+        <div className="flex-1 overflow-y-auto px-5 pt-7 space-y-3 pb-4">
           {messages.map((m, i) => (
             <React.Fragment key={i}>
               {m.role === "assistant" && (
@@ -1803,7 +1803,7 @@ function ChatScreen({
             </div>
           )}
         </div>
-        <div className="absolute bottom-6 left-5 right-5 flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2 px-5 pb-6 pt-2">
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
