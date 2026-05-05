@@ -750,7 +750,7 @@ function Landing({ setScreen }: { setScreen: (screen: Screen) => void }) {
         <HeroLandscape />
         <div className="absolute bottom-12 left-6 right-6">
           <PrimaryButton onClick={() => setScreen("intent")}>Claim Your Clarity</PrimaryButton>
-          <button onClick={() => setScreen("account")} className="mt-4 text-center text-xs font-semibold text-[#6B6B6B]">Already have an account? Log in</button>
+            <button onClick={() => setScreen("account")} className="mt-4 text-center text-xs font-semibold text-[#6B6B6B]">Already have an account? Log in</button>
         </div>
       </div>
     </PhoneFrame>
@@ -1122,8 +1122,8 @@ function ClarityScreen({ setScreen, sessionState, setSessionState }: { setScreen
   );
 }
 
-function Account({ setScreen }: { setScreen: (screen: Screen) => void }) {
-  const [isSignIn, setIsSignIn] = useState(false);
+function Account({ setScreen, defaultSignIn }: { setScreen: (screen: Screen) => void; defaultSignIn?: boolean }) {
+  const [isSignIn, setIsSignIn] = useState(defaultSignIn ?? false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -2179,7 +2179,7 @@ function WisdomDetail({ setScreen, sessionState }: { setScreen: (screen: Screen)
 
 function Premium({ setScreen }: { setScreen: (screen: Screen) => void }) {
   return (
-    <PhoneFrame dark>
+    <PhoneFrame>
       <div className="min-h-[844px] text-white">
         <div className="px-6 pt-14">
           <h2 className="text-[28px] font-bold">Upgrade to Premium</h2>
@@ -2446,7 +2446,7 @@ function Current({
     chat: <ChatScreen setScreen={setScreen} sessionState={sessionState} setSessionState={setSessionState} />,
     quickClarity: <QuickClarity setScreen={setScreen} sessionState={sessionState} setSessionState={setSessionState} />,
     clarity: <ClarityScreen setScreen={setScreen} sessionState={sessionState} setSessionState={setSessionState} />,
-    account: <Account setScreen={setScreen} />,
+    account: <Account setScreen={setScreen} defaultSignIn={true} />,
     sessions: <SessionsScreen setScreen={setScreen} sessionState={sessionState} setSessionState={setSessionState} />,
     sessionsEmpty: <SessionsEmpty setScreen={setScreen} />,
     insights: <InsightsScreen setScreen={setScreen} />,

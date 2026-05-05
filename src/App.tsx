@@ -266,7 +266,7 @@ function Landing({ setScreen }: { setScreen: (screen: Screen) => void }) {
         <WaveIllustration />
         <div className="absolute bottom-12 left-6 right-6">
           <PrimaryButton onClick={() => setScreen("intent")}>Start</PrimaryButton>
-          <div className="mt-4 text-center text-xs font-semibold text-[#6B6B6B]">Already have an account? Log in</div>
+          <button onClick={() => setScreen("account")} className="mt-4 text-center text-xs font-semibold text-[#6B6B6B]">Already have an account? Log in</button>
         </div>
       </div>
     </PhoneFrame>
@@ -874,7 +874,7 @@ function Pattern({ setScreen }: { setScreen: (screen: Screen) => void }) {
 
 function Premium({ setScreen }: { setScreen: (screen: Screen) => void }) {
   return (
-    <PhoneFrame dark>
+    <PhoneFrame>
       <div className="min-h-[844px] text-white">
         <div className="px-6 pt-14">
           <h2 className="text-[28px] font-bold">Upgrade to Premium</h2>
