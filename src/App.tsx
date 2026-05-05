@@ -31,7 +31,7 @@ import {
 } from "lucide-react";
 
 const colors = {
-  bg: "#E2FFF9",
+  bg: "#FFFFFF",
   card: "#FFFFFF",
   orange: "#E9A23B",
   orange2: "#F4C15D",
@@ -1088,7 +1088,7 @@ export default function LifemodeMobileAppUI() {
   const [grid, setGrid] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top,rgba(233,162,59,0.08),transparent_28%),linear-gradient(180deg,#e2fff9_0%,#e2fff9_100%)] p-4">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top,rgba(233,162,59,0.08),transparent_28%),linear-gradient(180deg,#ffffff_0%,#ffffff_100%)] p-4">
       <div className="mx-auto max-w-[390px]">
         <div className="mb-4 flex items-center justify-between gap-3">
           <select
