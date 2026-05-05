@@ -213,7 +213,7 @@ function ScreenShell({
   dark?: boolean;
 }) {
   return (
-    <div className="relative min-h-[844px] pb-[86px]">
+    <div className="relative min-h-[100dvh] pb-[86px]">
       {children}
       {nav && active ? <BottomNav active={active} setScreen={setScreen} /> : null}
     </div>
@@ -251,7 +251,7 @@ function WaveIllustration() {
 function Landing({ setScreen }: { setScreen: (screen: Screen) => void }) {
   return (
     <PhoneFrame>
-      <div className="relative min-h-[844px] overflow-hidden">
+      <div className="relative min-h-[100dvh] overflow-hidden">
         <div className="px-7 pt-14">
           <div className="flex items-center gap-1 text-[28px] font-semibold tracking-[-0.04em]">
             lifemode <span className="mt-1 h-3 w-3 rounded-full bg-[#E9A23B]" />
@@ -507,7 +507,7 @@ function ChatScreen({ setScreen }: { setScreen: (screen: Screen) => void }) {
 
   return (
     <PhoneFrame>
-      <div className="relative min-h-[844px]">
+      <div className="relative min-h-[100dvh]">
         <Header title="Career Direction" subtitle="Quick clarity • 8:42" onBack={() => setScreen("home")} />
         <div className="px-5 pt-7 space-y-3">
           <div className="relative">
@@ -548,7 +548,7 @@ function ChatScreen({ setScreen }: { setScreen: (screen: Screen) => void }) {
 function ReflectionScreen({ setScreen }: { setScreen: (screen: Screen) => void }) {
   return (
     <PhoneFrame>
-      <div className="relative min-h-[844px]">
+      <div className="relative min-h-[100dvh]">
         <Header title="Career Direction" subtitle="Quick clarity • 12:15" onBack={() => setScreen("chat")} />
         <div className="px-6 pt-16">
           <div className="rounded-3xl border bg-[#FEFCFA] p-7 shadow-[0_12px_35px_rgba(70,45,20,0.08)]" style={{ borderColor: colors.border }}>
@@ -572,7 +572,7 @@ function ReflectionScreen({ setScreen }: { setScreen: (screen: Screen) => void }
 function DecisionScreen({ setScreen }: { setScreen: (screen: Screen) => void }) {
   return (
     <PhoneFrame>
-      <div className="relative min-h-[844px]">
+      <div className="relative min-h-[100dvh]">
         <Header title="Career Direction" subtitle="Deep session • 18:20" onBack={() => setScreen("reflection")} />
         <div className="px-6 pt-12">
           <h2 className="text-[24px] font-bold tracking-[-0.03em]">Let’s look at both sides.</h2>
@@ -875,7 +875,7 @@ function Pattern({ setScreen }: { setScreen: (screen: Screen) => void }) {
 function Premium({ setScreen }: { setScreen: (screen: Screen) => void }) {
   return (
     <PhoneFrame>
-      <div className="min-h-[844px] text-white">
+      <div className="min-h-[100dvh] text-white">
         <div className="px-6 pt-14">
           <h2 className="text-[28px] font-bold">Upgrade to Premium</h2>
           <p className="mt-2 text-sm text-white/70">Unlock your full potential.</p>

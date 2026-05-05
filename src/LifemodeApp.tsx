@@ -458,7 +458,7 @@ function ScreenShell({
   dark?: boolean;
 }) {
   return (
-    <div className="relative min-h-[844px] pb-[86px]">
+    <div className="relative min-h-[100dvh] pb-[86px]">
       {children}
       {nav && active ? <BottomNav active={active} setScreen={setScreen} /> : null}
     </div>
@@ -735,7 +735,7 @@ function SectionHeader({
 function Landing({ setScreen }: { setScreen: (screen: Screen) => void }) {
   return (
     <PhoneFrame>
-      <div className="relative min-h-[844px] overflow-hidden">
+      <div className="relative min-h-[100dvh] overflow-hidden">
         <div className="px-7 pt-14">
           <div className="flex items-center gap-1 text-[28px] font-semibold tracking-[-0.04em]">
             lifemode <span className="mt-1 h-3 w-3 rounded-full bg-[#E9A23B]" />
@@ -1726,9 +1726,9 @@ function ChatScreen({
 
   return (
     <PhoneFrame>
-      <div className="relative min-h-[844px]">
+      <div className="relative min-h-[100dvh]">
         <Header title={sessionState.intent || "Session"} subtitle={subtitle} onBack={handleBack} />
-        <div className="px-5 pt-7 space-y-3 pb-28 overflow-y-auto max-h-[calc(844px-140px)]">
+        <div className="px-5 pt-7 space-y-3 pb-28 overflow-y-auto max-h-[calc(100dvh-200px)]">
           {messages.map((m, i) => (
             <React.Fragment key={i}>
               {m.role === "assistant" && (
@@ -2180,7 +2180,7 @@ function WisdomDetail({ setScreen, sessionState }: { setScreen: (screen: Screen)
 function Premium({ setScreen }: { setScreen: (screen: Screen) => void }) {
   return (
     <PhoneFrame>
-      <div className="min-h-[844px] text-white">
+      <div className="min-h-[100dvh] text-white">
         <div className="px-6 pt-14">
           <h2 className="text-[28px] font-bold">Upgrade to Premium</h2>
           <p className="mt-2 text-sm text-white/70">Unlock your full potential.</p>
