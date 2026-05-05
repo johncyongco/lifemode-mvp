@@ -32,16 +32,16 @@ import {
 
 const colors = {
   bg: "#E2FFF9",
-  card: "#FEFCFA",
+  card: "#FFFFFF",
   orange: "#E9A23B",
   orange2: "#F4C15D",
-  border: "#E8E0D7",
+  border: "#D4EDE6",
   text: "#1D1D1F",
   muted: "#6B6B6B",
-  blue: "#DFEBF6",
-  green: "#DAEBDC",
-  pink: "#F8E1DD",
-  purple: "#EEE4F6",
+  blue: "#D6EBF2",
+  green: "#D0E8D3",
+  pink: "#F2D6D0",
+  purple: "#E6DCF0",
   dark: "#1F2329",
 };
 
@@ -120,7 +120,7 @@ function SecondaryButton({
   return (
     <button
       onClick={onClick}
-      className="h-14 w-full rounded-2xl border border-[#E8E0D7] bg-[#FEFCFA] text-sm font-semibold text-[#1D1D1F] transition active:scale-[0.99]"
+      className="h-14 w-full rounded-2xl border border-[#D4EDE6] bg-[#FEFCFA] text-sm font-semibold text-[#1D1D1F] transition active:scale-[0.99]"
     >
       {children}
     </button>
@@ -158,7 +158,7 @@ function ProgressHeader({ step }: { step: number }) {
   return (
     <div className="px-6 pt-5">
       <div className="flex items-center gap-4">
-        <div className="h-1 flex-1 rounded-full bg-[#E8E0D7]">
+        <div className="h-1 flex-1 rounded-full bg-[#D4EDE6]">
           <div className="h-1 rounded-full bg-[#C88725]" style={{ width: `${step * 20}%` }} />
         </div>
         <span className="text-xs font-semibold text-[#6B6B6B]">{step} / 5</span>
@@ -403,9 +403,9 @@ function Account({ setScreen }: { setScreen: (screen: Screen) => void }) {
             </button>
           </div>
           <div className="my-7 flex items-center gap-4 text-xs text-[#777]">
-            <span className="h-px flex-1 bg-[#E8E0D7]" />
+            <span className="h-px flex-1 bg-[#D4EDE6]" />
             or
-            <span className="h-px flex-1 bg-[#E8E0D7]" />
+            <span className="h-px flex-1 bg-[#D4EDE6]" />
           </div>
           <div className="space-y-3">
             <input className="h-14 w-full rounded-2xl border bg-white px-4 text-sm outline-none placeholder:text-[#999]" placeholder="Email address" />
@@ -859,7 +859,7 @@ function Pattern({ setScreen }: { setScreen: (screen: Screen) => void }) {
           <div className="mt-7 text-xs font-semibold">Your Pattern</div>
           <h2 className="mt-3 text-[24px] font-bold leading-tight tracking-[-0.03em]">You prioritize stability over growth.</h2>
           <p className="mt-4 text-sm leading-5 text-[#555]">This was identified in 7 of your last 10 sessions.</p>
-          <div className="my-8 h-px bg-[#E8E0D7]" />
+          <div className="my-8 h-px bg-[#D4EDE6]" />
           <h3 className="text-sm font-semibold">What this means</h3>
           <p className="mt-3 text-sm leading-6 text-[#555]">
             You value security and predictability, which helps you make thoughtful decisions, but may also hold you back from opportunities.
@@ -1071,7 +1071,7 @@ function ScreenGrid({ setScreen }: { setScreen: (screen: Screen) => void }) {
           <div key={s}>
             <div className="mb-2 flex items-center justify-between">
               <div className="text-sm font-semibold">{screens.find((x) => x.key === s)?.label}</div>
-              <button onClick={() => setScreen(s)} className="rounded-full border border-[#E8E0D7] bg-white px-3 py-1 text-[11px] font-semibold text-[#1D1D1F]">
+              <button onClick={() => setScreen(s)} className="rounded-full border border-[#D4EDE6] bg-white px-3 py-1 text-[11px] font-semibold text-[#1D1D1F]">
                 Open
               </button>
             </div>
@@ -1097,7 +1097,7 @@ export default function LifemodeMobileAppUI() {
               setScreen(e.target.value as Screen);
               setGrid(false);
             }}
-            className="h-11 rounded-xl border border-[#E8E0D7] bg-white px-3 text-sm outline-none"
+            className="h-11 rounded-xl border border-[#D4EDE6] bg-white px-3 text-sm outline-none"
           >
             {screens.map((s) => (
               <option key={s.key} value={s.key}>

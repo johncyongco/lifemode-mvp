@@ -47,16 +47,16 @@ import {
 
 const colors = {
   bg: "#E2FFF9",
-  card: "#FEFCFA",
+  card: "#FFFFFF",
   orange: "#E9A23B",
   orange2: "#F4C15D",
-  border: "#E8E0D7",
+  border: "#D4EDE6",
   text: "#1D1D1F",
   muted: "#6B6B6B",
-  blue: "#DFEBF6",
-  green: "#DAEBDC",
-  pink: "#F8E1DD",
-  purple: "#EEE4F6",
+  blue: "#D6EBF2",
+  green: "#D0E8D3",
+  pink: "#F2D6D0",
+  purple: "#E6DCF0",
   dark: "#1F2329",
 };
 
@@ -363,7 +363,7 @@ function SecondaryButton({
   return (
     <button
       onClick={onClick}
-      className="h-14 w-full rounded-2xl border border-[#E8E0D7] bg-[#FEFCFA] text-sm font-semibold text-[#1D1D1F] transition active:scale-[0.99]"
+      className="h-14 w-full rounded-2xl border border-[#D4EDE6] bg-white text-sm font-semibold text-[#1D1D1F] transition active:scale-[0.99]"
     >
       {children}
     </button>
@@ -401,7 +401,7 @@ function ProgressHeader({ step, total = 5 }: { step: number; total?: number }) {
   return (
     <div className="px-6 pt-5">
       <div className="flex items-center gap-4">
-        <div className="h-1 flex-1 rounded-full bg-[#E8E0D7]">
+        <div className="h-1 flex-1 rounded-full bg-[#D4EDE6]">
           <div className="h-1 rounded-full bg-[#C88725]" style={{ width: `${(step / total) * 100}%` }} />
         </div>
         <span className="text-xs font-semibold text-[#6B6B6B]">
@@ -428,7 +428,7 @@ function BottomNav({
   ] as const;
 
   return (
-    <div className="absolute inset-x-0 bottom-0 h-[72px] border-t bg-[#FEFCFA]/95 px-3 pt-2 backdrop-blur-sm" style={{ borderColor: colors.border }}>
+    <div className="absolute inset-x-0 bottom-0 h-[72px] border-t bg-white/95 px-3 pt-2 backdrop-blur-sm" style={{ borderColor: colors.border }}>
       <div className="grid grid-cols-5">
         {items.map(([key, Icon, label]) => {
           const isActive = active === key;
@@ -506,7 +506,7 @@ function Chip({
     <button
       onClick={onClick}
       className={`h-9 rounded-full px-4 text-xs font-semibold transition active:scale-[0.99] ${
-        active ? "bg-[#1F2329] text-white" : "border bg-[#FEFCFA] text-[#555]"
+        active ? "bg-[#1F2329] text-white" : "border bg-white text-[#555]"
       }`}
       style={{ borderColor: colors.border }}
     >
@@ -576,7 +576,7 @@ function SessionCard({
   return (
     <button
       onClick={onClick}
-      className="flex w-full gap-3 rounded-2xl border bg-[#FEFCFA] p-3 text-left transition active:scale-[0.99]"
+      className="flex w-full gap-3 rounded-2xl border border-transparent bg-white p-3 text-left shadow-float transition active:scale-[0.99]"
       style={{ borderColor: colors.border }}
     >
       <div className="grid h-12 w-12 place-items-center rounded-xl" style={{ background: tone }}>
@@ -644,7 +644,7 @@ function InsightCard({
   onClick?: () => void;
 }) {
   return (
-    <button onClick={onClick} className="mt-4 w-full rounded-2xl border bg-[#FEFCFA] p-5 text-left" style={{ borderColor: colors.border }}>
+    <button onClick={onClick} className="mt-4 w-full rounded-2xl border bg-white p-5 text-left" style={{ borderColor: colors.border }}>
       <div className="flex justify-between">
         <h3 className="max-w-[250px] text-base font-semibold leading-5">{title}</h3>
         <HelpCircle size={16} />
@@ -682,7 +682,7 @@ function ChatBubble({
   }
 
   return (
-    <div className="ml-10 max-w-[260px] rounded-2xl border bg-[#FEFCFA] px-4 py-3 text-xs leading-5" style={{ borderColor: colors.border }}>
+    <div className="ml-10 max-w-[260px] rounded-2xl border bg-white px-4 py-3 text-xs leading-5" style={{ borderColor: colors.border }}>
       {children}
     </div>
   );
@@ -700,7 +700,7 @@ function EmptyStateCard({
   action: string;
 }) {
   return (
-    <div className="rounded-2xl border bg-[#FEFCFA] p-5" style={{ borderColor: colors.border }}>
+    <div className="rounded-2xl border bg-white p-5" style={{ borderColor: colors.border }}>
       <div className="grid h-11 w-11 place-items-center rounded-full bg-[#FFF4E5]">
         <Icon size={18} color={colors.orange} />
       </div>
@@ -841,7 +841,7 @@ function Thought({ setScreen, setSessionState }: { setScreen: (screen: Screen) =
             What's on your{"\n"}mind right now?
           </h2>
           <p className="mt-3 max-w-[260px] text-sm leading-5 text-[#555]">Share anything. No rush, you are at the present.</p>
-          <div className="mt-8 rounded-2xl border bg-[#FEFCFA] p-5" style={{ borderColor: colors.border }}>
+          <div className="mt-8 rounded-2xl border bg-white p-5" style={{ borderColor: colors.border }}>
             <textarea
               value={thought}
               onChange={(e) => setThought(e.target.value)}
@@ -892,7 +892,7 @@ function Mode({ setScreen, setSessionState }: { setScreen: (screen: Screen) => v
                 <Check size={14} color="white" />
               </div>
             </button>
-            <button onClick={() => setSelected("deep")} className="flex gap-4 rounded-2xl border bg-[#FEFCFA] p-5 text-left" style={{ borderColor: selected === "deep" ? colors.orange : colors.border }}>
+            <button onClick={() => setSelected("deep")} className="flex gap-4 rounded-2xl border bg-white p-5 text-left" style={{ borderColor: selected === "deep" ? colors.orange : colors.border }}>
               <Leaf className="mt-1" size={25} color="#5EA374" />
               <div className="flex-1">
                 <div className="font-semibold">Deep session</div>
@@ -934,7 +934,7 @@ function QuickClarity({ setScreen, sessionState, setSessionState }: { setScreen:
         <div className="px-6 pt-10 pb-24">
           <h2 className="text-[25px] font-bold tracking-[-0.03em]">Here's your clarity</h2>
           <p className="mt-2 text-sm text-[#555]">Two lenses to help you see your situation clearly.</p>
-          <div className="mt-6 rounded-2xl border bg-[#FEFCFA] p-4" style={{ borderColor: colors.border }}>
+          <div className="mt-6 rounded-2xl border bg-white p-4" style={{ borderColor: colors.border }}>
             <div className="text-xs font-semibold text-[#777]">Session name</div>
             <input
               value={title}
@@ -944,7 +944,7 @@ function QuickClarity({ setScreen, sessionState, setSessionState }: { setScreen:
             />
           </div>
           <div className="mt-6 space-y-4">
-            <div className="overflow-hidden rounded-2xl border bg-[#FEFCFA]" style={{ borderColor: colors.border }}>
+            <div className="overflow-hidden rounded-2xl border bg-white" style={{ borderColor: colors.border }}>
               <div className="flex items-center gap-4 p-5">
                 <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl" style={{ background: colors.orange + "30" }}>
                   <Zap size={22} color={colors.orange} />
@@ -958,7 +958,7 @@ function QuickClarity({ setScreen, sessionState, setSessionState }: { setScreen:
                 <p className="text-sm leading-6 text-[#555]">{micro}</p>
               </div>
             </div>
-            <div className="overflow-hidden rounded-2xl border bg-[#FEFCFA]" style={{ borderColor: colors.border }}>
+            <div className="overflow-hidden rounded-2xl border bg-white" style={{ borderColor: colors.border }}>
               <div className="flex items-center gap-4 p-5">
                 <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl" style={{ background: "#5EA374" + "30" }}>
                   <Compass size={22} color="#5EA374" />
@@ -1050,7 +1050,7 @@ function ClarityScreen({ setScreen, sessionState, setSessionState }: { setScreen
         <div className="px-6 pt-10 pb-24">
           <h2 className="text-[25px] font-bold tracking-[-0.03em]">Here's your clarity</h2>
           <p className="mt-2 text-sm text-[#555]">Two lenses to help you see your situation clearly.</p>
-          <div className="mt-6 rounded-2xl border bg-[#FEFCFA] p-4" style={{ borderColor: colors.border }}>
+          <div className="mt-6 rounded-2xl border bg-white p-4" style={{ borderColor: colors.border }}>
             <div className="text-xs font-semibold text-[#777]">Session name</div>
             <input
               value={title}
@@ -1060,7 +1060,7 @@ function ClarityScreen({ setScreen, sessionState, setSessionState }: { setScreen
             />
           </div>
           <div className="mt-6 space-y-4">
-            <div className="overflow-hidden rounded-2xl border bg-[#FEFCFA]" style={{ borderColor: colors.border }}>
+            <div className="overflow-hidden rounded-2xl border bg-white" style={{ borderColor: colors.border }}>
               <div className="flex items-center gap-4 p-5">
                 <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl" style={{ background: colors.orange + "30" }}>
                   <Zap size={22} color={colors.orange} />
@@ -1074,7 +1074,7 @@ function ClarityScreen({ setScreen, sessionState, setSessionState }: { setScreen
                 <p className="text-sm leading-6 text-[#555]">{micro}</p>
               </div>
             </div>
-            <div className="overflow-hidden rounded-2xl border bg-[#FEFCFA]" style={{ borderColor: colors.border }}>
+            <div className="overflow-hidden rounded-2xl border bg-white" style={{ borderColor: colors.border }}>
               <div className="flex items-center gap-4 p-5">
                 <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl" style={{ background: "#5EA374" + "30" }}>
                   <Compass size={22} color="#5EA374" />
@@ -1173,9 +1173,9 @@ function Account({ setScreen, defaultSignIn }: { setScreen: (screen: Screen) => 
             <SecondaryButton onClick={handleGoogle}>Continue with Google</SecondaryButton>
           </div>
           <div className="my-7 flex items-center gap-4 text-xs text-[#777]">
-            <span className="h-px flex-1 bg-[#E8E0D7]" />
+            <span className="h-px flex-1 bg-[#D4EDE6]" />
             or
-            <span className="h-px flex-1 bg-[#E8E0D7]" />
+            <span className="h-px flex-1 bg-[#D4EDE6]" />
           </div>
           <div className="space-y-3">
             <input
@@ -1287,7 +1287,7 @@ function HomeScreen({ setScreen, sessionState, setSessionState }: { setScreen: (
           </div>
           <h2 className="mt-7 text-[21px] font-bold">Good evening, John.</h2>
 
-          <div className="relative mt-5 min-h-[140px] w-full overflow-hidden rounded-2xl border border-[#E8E0D7] bg-white shadow-sm">
+          <div className="relative mt-5 min-h-[140px] w-full overflow-hidden rounded-2xl border border-[#D4EDE6] bg-white shadow-sm">
             <div className="flex h-full flex-col justify-between gap-3 p-4">
               <textarea
                 value={homeThought}
@@ -1426,7 +1426,7 @@ function SessionDetail({ setScreen, sessionState, setSessionState }: { setScreen
       <ScreenShell nav active="sessions" setScreen={setScreen}>
         <Header title={title} subtitle={session?.status === "archived" ? "Archived" : session?.status === "completed" ? "Completed" : `In progress • ${pct}%`} onBack={() => setScreen("sessions")} right={<MoreHorizontal size={19} />} />
         <div className="px-6 pt-6">
-          <div className="rounded-2xl border bg-[#FEFCFA] p-4" style={{ borderColor: colors.border }}>
+          <div className="rounded-2xl border bg-white p-4" style={{ borderColor: colors.border }}>
             <div className="text-xs font-semibold text-[#777]">Current focus</div>
             <div className="mt-2 text-sm leading-6 text-[#1D1D1F]">
               {snippet || "No thought recorded."}
@@ -1440,7 +1440,7 @@ function SessionDetail({ setScreen, sessionState, setSessionState }: { setScreen
 
           <div className="mt-6 space-y-3">
             {session?.status === "in_progress" && (
-              <button onClick={handleResume} className="flex w-full items-center gap-3 rounded-2xl border bg-[#FEFCFA] p-4 text-left transition active:scale-[0.99]" style={{ borderColor: colors.border }}>
+              <button onClick={handleResume} className="flex w-full items-center gap-3 rounded-2xl border bg-white p-4 text-left transition active:scale-[0.99]" style={{ borderColor: colors.border }}>
                 <div className="grid h-10 w-10 place-items-center rounded-xl bg-[#FFF4E5]">
                   <BookText size={18} color={colors.orange} />
                 </div>
@@ -1451,7 +1451,7 @@ function SessionDetail({ setScreen, sessionState, setSessionState }: { setScreen
                 <ChevronRight size={17} />
               </button>
             )}
-            <button onClick={handleArchive} className="flex w-full items-center gap-3 rounded-2xl border bg-[#FEFCFA] p-4 text-left transition active:scale-[0.99]" style={{ borderColor: colors.border }}>
+            <button onClick={handleArchive} className="flex w-full items-center gap-3 rounded-2xl border bg-white p-4 text-left transition active:scale-[0.99]" style={{ borderColor: colors.border }}>
               <div className="grid h-10 w-10 place-items-center rounded-xl bg-[#F8E1DD]">
                 <Archive size={18} />
               </div>
@@ -1754,7 +1754,7 @@ function ChatScreen({
               <div className="absolute -left-10 top-1 grid h-7 w-7 place-items-center rounded-full bg-[#16191E]">
                 <Sparkles size={14} color="#F4C15D" fill="#F4C15D" />
               </div>
-              <div className="rounded-2xl border bg-[#FEFCFA] px-4 py-3" style={{ borderColor: colors.border }}>
+              <div className="rounded-2xl border bg-white px-4 py-3" style={{ borderColor: colors.border }}>
                 <div className="flex gap-1 text-xs text-[#888]">
                   <span className="animate-pulse">Thinking</span>
                   <span className="animate-pulse">.</span>
@@ -1790,7 +1790,7 @@ function ChatScreen({
               <button onClick={handleChoice} className="h-11 rounded-2xl bg-[#1F2329] text-xs font-semibold text-white">
                 Get clarity
               </button>
-              <button onClick={handleChoiceDeep} className="h-11 rounded-2xl border bg-[#FEFCFA] text-xs font-semibold" style={{ borderColor: colors.border }}>
+              <button onClick={handleChoiceDeep} className="h-11 rounded-2xl border bg-white text-xs font-semibold" style={{ borderColor: colors.border }}>
                 Continue deeper
               </button>
             </div>
@@ -1940,7 +1940,7 @@ function InsightsScreen({ setScreen }: { setScreen: (screen: Screen) => void }) 
             onClick={() => setScreen("pattern")}
           />
           <SectionHeader title="Decision History" action="See all" onAction={() => setScreen("sessions")} />
-          <button onClick={() => setScreen("sessions")} className="mt-4 rounded-2xl border bg-[#FEFCFA] p-4 text-left" style={{ borderColor: colors.border }}>
+          <button onClick={() => setScreen("sessions")} className="mt-4 rounded-2xl border bg-white p-4 text-left" style={{ borderColor: colors.border }}>
             <div className="flex gap-3">
               <div className="grid h-10 w-10 place-items-center rounded-xl bg-[#F8E1DD]">
                 <Heart size={16} />
@@ -1995,7 +1995,7 @@ function PatternDetail({ setScreen }: { setScreen: (screen: Screen) => void }) {
                 <button
                   key={item.title}
                   onClick={() => { setSelectedIntent(isSelected ? null : i); setShowCompare(false); }}
-                  className="w-full rounded-2xl border bg-[#FEFCFA] p-4 text-left transition active:scale-[0.99]"
+                  className="w-full rounded-2xl border bg-white p-4 text-left transition active:scale-[0.99]"
                   style={{ borderColor: isSelected ? colors.orange : colors.border }}
                 >
                   <div className="flex items-center gap-3">
@@ -2073,7 +2073,7 @@ function WisdomArchive({ setScreen, sessionState, setSessionState }: { setScreen
       <ScreenShell nav active="wisdomArchive" setScreen={setScreen}>
         <Header title="Wisdom" subtitle="Saved reflections" onBack={() => setScreen("wisdomArchive")} />
         <div className="px-6 pt-5">
-          <div className="rounded-3xl border bg-[#FEFCFA] p-5" style={{ borderColor: colors.border }}>
+          <div className="rounded-3xl border bg-white p-5" style={{ borderColor: colors.border }}>
             <div className="text-xs font-semibold text-[#777]">Archive</div>
             <p className="mt-3 text-sm leading-6 text-[#555]">
               Completed sessions appear here as saved wisdom.
@@ -2086,7 +2086,7 @@ function WisdomArchive({ setScreen, sessionState, setSessionState }: { setScreen
               {completed.map((s) => {
                 const Icon = iconMap[s.intent] || BookText;
                 return (
-                  <div key={s.id} className="flex items-center gap-3 rounded-2xl border bg-[#FEFCFA] p-4" style={{ borderColor: colors.border }}>
+                  <div key={s.id} className="flex items-center gap-3 rounded-2xl border bg-white p-4" style={{ borderColor: colors.border }}>
                     <button onClick={() => {
                       setSessionState((prev) => ({ ...prev, currentSessionId: s.id }));
                       setScreen("wisdomDetail");
@@ -2136,7 +2136,7 @@ function WisdomDetail({ setScreen, sessionState }: { setScreen: (screen: Screen)
       <ScreenShell nav active="wisdomArchive" setScreen={setScreen}>
         <Header title="Wisdom Detail" subtitle={session?.intent || "Saved session"} onBack={() => setScreen("wisdomArchive")} right={<MoreHorizontal size={19} />} />
         <div className="px-6 pt-5">
-          <div className="rounded-3xl border bg-[#FEFCFA] p-5" style={{ borderColor: colors.border }}>
+          <div className="rounded-3xl border bg-white p-5" style={{ borderColor: colors.border }}>
             <div className="flex items-center gap-3">
               <div className="grid h-11 w-11 place-items-center rounded-full bg-[#FFF4E5]">
                 <BookText size={18} color={colors.orange} />
@@ -2150,19 +2150,19 @@ function WisdomDetail({ setScreen, sessionState }: { setScreen: (screen: Screen)
               {clarity?.perspective || "Small actions compound into real change. What you do today echoes beyond this moment."}
             </p>
           </div>
-          <div className="mt-6 rounded-2xl border bg-[#FEFCFA] p-4" style={{ borderColor: colors.border }}>
+          <div className="mt-6 rounded-2xl border bg-white p-4" style={{ borderColor: colors.border }}>
             <div className="text-xs font-semibold text-[#777]">Micro Lens</div>
             <p className="mt-2 text-sm leading-6 text-[#555]">
               {clarity?.micro || "Your current situation affects your daily actions."}
             </p>
           </div>
-          <div className="mt-4 rounded-2xl border bg-[#FEFCFA] p-4" style={{ borderColor: colors.border }}>
+          <div className="mt-4 rounded-2xl border bg-white p-4" style={{ borderColor: colors.border }}>
             <div className="text-xs font-semibold text-[#777]">Macro Lens</div>
             <p className="mt-2 text-sm leading-6 text-[#555]">
               {clarity?.macro || "Beyond this moment, the ripple effect matters."}
             </p>
           </div>
-          <div className="mt-6 rounded-2xl border bg-[#FEFCFA] p-4" style={{ borderColor: colors.border }}>
+          <div className="mt-6 rounded-2xl border bg-white p-4" style={{ borderColor: colors.border }}>
             <div className="text-xs font-semibold text-[#777]">Source session</div>
             <p className="mt-2 text-sm leading-6 text-[#555]">
               {session?.intent || "Session"} • {session?.createdAt ? new Date(session.createdAt).toLocaleDateString() : ""}
@@ -2245,7 +2245,7 @@ function Billing({ setScreen }: { setScreen: (screen: Screen) => void }) {
       <ScreenShell nav active="profile" setScreen={setScreen}>
         <Header title="Billing" subtitle="Manage your plan" onBack={() => setScreen("premium")} right={<CreditCard size={19} />} />
         <div className="px-6 pt-5">
-          <div className="rounded-3xl border bg-[#FEFCFA] p-5" style={{ borderColor: colors.border }}>
+          <div className="rounded-3xl border bg-white p-5" style={{ borderColor: colors.border }}>
             <div className="text-xs font-semibold text-[#777]">Current plan</div>
             <div className="mt-2 flex items-end justify-between">
               <div>
@@ -2286,7 +2286,7 @@ function Notifications({ setScreen }: { setScreen: (screen: Screen) => void }) {
           {items.map((item) => {
             const Icon = item.icon;
             return (
-              <div key={item.title} className="flex gap-3 rounded-2xl border bg-[#FEFCFA] p-4" style={{ borderColor: colors.border }}>
+              <div key={item.title} className="flex gap-3 rounded-2xl border bg-white p-4" style={{ borderColor: colors.border }}>
                 <div className="grid h-11 w-11 place-items-center rounded-xl bg-[#FFF4E5]">
                   <Icon size={18} color={colors.orange} />
                 </div>
@@ -2378,7 +2378,7 @@ function Preferences({ setScreen }: { setScreen: (screen: Screen) => void }) {
             <div className="text-center text-sm font-semibold">Preferences</div>
             <div />
           </div>
-          <div className="mt-8 rounded-2xl border bg-[#FEFCFA] p-4" style={{ borderColor: colors.border }}>
+          <div className="mt-8 rounded-2xl border bg-white p-4" style={{ borderColor: colors.border }}>
             <SectionHeader title="General" />
             <ToggleRow label="Notifications" on />
             <ToggleRow label="Session reminders" on />
@@ -2410,15 +2410,15 @@ function Help({ setScreen }: { setScreen: (screen: Screen) => void }) {
       <ScreenShell nav active="profile" setScreen={setScreen}>
         <Header title="Help & Support" subtitle="FAQ, guidance, and contact" onBack={() => setScreen("profile")} right={<MessageCircleQuestion size={19} />} />
         <div className="px-6 pt-5 space-y-3">
-          <div className="rounded-2xl border bg-[#FEFCFA] p-4" style={{ borderColor: colors.border }}>
+          <div className="rounded-2xl border bg-white p-4" style={{ borderColor: colors.border }}>
             <div className="text-sm font-semibold">How does LifeMode work?</div>
             <p className="mt-2 text-xs leading-5 text-[#555]">It guides you through structured reflection, then saves the output into a wisdom archive.</p>
           </div>
-          <div className="rounded-2xl border bg-[#FEFCFA] p-4" style={{ borderColor: colors.border }}>
+          <div className="rounded-2xl border bg-white p-4" style={{ borderColor: colors.border }}>
             <div className="text-sm font-semibold">Is my data private?</div>
             <p className="mt-2 text-xs leading-5 text-[#555]">Yes. This prototype shows the product logic only, with no backend or syncing yet.</p>
           </div>
-          <div className="rounded-2xl border bg-[#FEFCFA] p-4" style={{ borderColor: colors.border }}>
+          <div className="rounded-2xl border bg-white p-4" style={{ borderColor: colors.border }}>
             <div className="text-sm font-semibold">Need to contact us?</div>
             <p className="mt-2 text-xs leading-5 text-[#555]">Support@lifemode.io is where a real support flow would live.</p>
           </div>
@@ -2498,7 +2498,7 @@ function ScreenGrid({
           <div key={s}>
             <div className="mb-2 flex items-center justify-between">
               <div className="text-sm font-semibold">{screens.find((x) => x.key === s)?.label}</div>
-              <button onClick={() => setScreen(s)} className="rounded-full border border-[#E8E0D7] bg-white px-3 py-1 text-[11px] font-semibold text-[#1D1D1F]">
+              <button onClick={() => setScreen(s)} className="rounded-full border border-[#D4EDE6] bg-white px-3 py-1 text-[11px] font-semibold text-[#1D1D1F]">
                 Open
               </button>
             </div>
