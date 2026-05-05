@@ -46,7 +46,7 @@ import {
 } from "lucide-react";
 
 const colors = {
-  bg: "#FDF9F4",
+  bg: "#BFE9E1",
   card: "#FEFCFA",
   orange: "#E9A23B",
   orange2: "#F4C15D",
@@ -2601,14 +2601,14 @@ export default function LifemodeApp() {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#FDF9F4]">
+      <div className="flex min-h-screen items-center justify-center bg-[#BFE9E1]">
         <div className="text-sm text-[#555]">Loading...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top,rgba(233,162,59,0.08),transparent_28%),linear-gradient(180deg,#f6efe6_0%,#f5efe7_100%)]">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top,rgba(233,162,59,0.08),transparent_28%),linear-gradient(180deg,#bfe9e1_0%,#bfe9e1_100%)]">
       <div className="mx-auto max-w-[390px]">
         <Current screen={screen} setScreen={setScreen} sessionState={sessionState} setSessionState={setSessionState} />
       </div>
