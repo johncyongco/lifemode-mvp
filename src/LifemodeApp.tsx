@@ -995,7 +995,9 @@ function QuickClarity({ setScreen, sessionState, setSessionState }: { setScreen:
                 ...prev,
                 sessions: [saved, ...prev.sessions.filter((s) => s.id !== saved.id)],
               }));
-              setScreen("home");
+              supabase.auth.getUser().then(({ data }) => {
+                setScreen(data.user ? "home" : "account");
+              });
             }}>Save & continue</PrimaryButton>
             <SecondaryButton onClick={() => {
               setSessionState((prev) => ({ ...prev, currentSessionId: null, latest_user_message: "" }));
@@ -1109,7 +1111,9 @@ function ClarityScreen({ setScreen, sessionState, setSessionState }: { setScreen
                 ...prev,
                 sessions: [saved, ...prev.sessions.filter((s) => s.id !== saved.id)],
               }));
-              setScreen("home");
+              supabase.auth.getUser().then(({ data }) => {
+                setScreen(data.user ? "home" : "account");
+              });
             }}>Save & continue</PrimaryButton>
             <SecondaryButton onClick={() => {
               setSessionState((prev) => ({ ...prev, currentSessionId: null, latest_user_message: "" }));
@@ -2305,10 +2309,14 @@ function Notifications({ setScreen }: { setScreen: (screen: Screen) => void }) {
 
 function Profile({ setScreen }: { setScreen: (screen: Screen) => void }) {
   const [userEmail, setUserEmail] = useState("");
+  const [userName, setUserName] = useState("");
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
-      if (data.user) setUserEmail(data.user.email ?? "");
+      if (data.user) {
+        setUserEmail(data.user.email ?? "");
+        setUserName(data.user.user_metadata?.full_name || data.user.email?.split("@")[0] || "User");
+      }
     });
   }, []);
 
@@ -2335,7 +2343,7 @@ function Profile({ setScreen }: { setScreen: (screen: Screen) => void }) {
           <div className="mt-9 flex items-center gap-4">
             <div className="h-16 w-16 rounded-full bg-[linear-gradient(135deg,#E9BA72,#C98E86)]" />
             <div>
-              <div className="text-base font-bold">John Doe</div>
+              <div className="text-base font-bold">{userName || "User"}</div>
               <div className="text-xs text-[#777]">{userEmail || "user@email.com"}</div>
               <div className="mt-1 text-xs font-semibold text-[#C88725]">Premium Member</div>
             </div>
