@@ -1,0 +1,14 @@
+{
+  "name": "lifemode-hyperframes",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "preview": "node ./scripts/preview.mjs",
+    "render": "node ./scripts/render.mjs"
+  },
+  "dependencies": {
+    "hyperframes": "*",
+    "ffmpeg-static": "*",
+    "ffprobe-static": "*"
+  }
+}

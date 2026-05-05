@@ -1,0 +1,851 @@
+<template id="lifemode-intro-template">
+  <div data-composition-id="lifemode-intro" data-width="1080" data-height="1920">
+    <style>
+      [data-composition-id="lifemode-intro"] {
+        --bg: #fdf9f4;
+        --card: #fefcfa;
+        --orange: #e9ba72;
+        --orange-deep: #c88725;
+        --text: #1d1d1f;
+        --muted: #6b6b6b;
+        --border: #e8e0d7;
+        --blue: #dfebf6;
+        --green: #daebdc;
+        --pink: #f8e1dd;
+        --purple: #eee4f6;
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 50% 8%, rgba(233, 186, 114, 0.12), transparent 22%),
+          linear-gradient(180deg, #fdf9f4 0%, #fcf6ef 100%);
+        color: var(--text);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      [data-composition-id="lifemode-intro"] * {
+        box-sizing: border-box;
+      }
+
+      .scene {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      .scene-inner {
+        width: 100%;
+        height: 100%;
+        padding: 92px 84px 84px;
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 54px;
+        font-weight: 700;
+        letter-spacing: -0.05em;
+      }
+
+      .brand-dot {
+        width: 18px;
+        height: 18px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #f4c15d, #e59b2e);
+        margin-top: 8px;
+      }
+
+      .hero-title {
+        margin-top: 130px;
+        max-width: 620px;
+        font-size: 86px;
+        line-height: 0.98;
+        letter-spacing: -0.06em;
+        font-weight: 700;
+      }
+
+      .subtitle {
+        max-width: 660px;
+        font-size: 30px;
+        line-height: 1.45;
+        color: var(--muted);
+      }
+
+      .landscape {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 870px;
+        background:
+          radial-gradient(circle at 70% 18%, rgba(255, 255, 255, 0.85), transparent 14%),
+          linear-gradient(180deg, rgba(244, 193, 93, 0.1), rgba(77, 101, 89, 0.05)),
+          linear-gradient(180deg, #f7eedf 0%, #ece0cf 34%, #708373 100%);
+      }
+
+      .mountain {
+        position: absolute;
+        bottom: 0;
+        width: 70%;
+        height: 390px;
+        border-radius: 100% 100% 0 0 / 65% 65% 0 0;
+        background: linear-gradient(180deg, rgba(81, 93, 87, 0.96), rgba(40, 53, 48, 1));
+        transform: skewX(-10deg);
+      }
+
+      .mountain.left { left: -8%; }
+      .mountain.right {
+        right: -10%;
+        width: 62%;
+        height: 340px;
+        opacity: 0.9;
+      }
+
+      .silhouette {
+        position: absolute;
+        left: 23%;
+        bottom: 140px;
+        width: 72px;
+        height: 180px;
+        border-radius: 999px 999px 22px 22px;
+        background: #1d1d1f;
+      }
+
+      .silhouette::before {
+        content: "";
+        position: absolute;
+        top: -48px;
+        left: 10px;
+        width: 52px;
+        height: 52px;
+        border-radius: 999px;
+        background: #1d1d1f;
+      }
+
+      .phone-shell {
+        position: relative;
+        width: 468px;
+        height: 940px;
+        margin: 0 auto;
+        border-radius: 56px;
+        padding: 18px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(244,238,229,0.88));
+        border: 1px solid rgba(232,224,215,0.9);
+        box-shadow: 0 28px 80px rgba(0,0,0,0.15);
+      }
+
+      .phone-screen {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        border-radius: 42px;
+        background: var(--bg);
+        border: 1px solid var(--border);
+      }
+
+      .status-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 22px 28px 0;
+        font-size: 22px;
+        font-weight: 600;
+      }
+
+      .status-icons {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .signal {
+        display: inline-flex;
+        align-items: end;
+        gap: 3px;
+      }
+
+      .signal span {
+        display: block;
+        width: 4px;
+        border-radius: 4px;
+        background: var(--text);
+      }
+
+      .signal span:nth-child(1) { height: 8px; opacity: 0.45; }
+      .signal span:nth-child(2) { height: 12px; opacity: 0.65; }
+      .signal span:nth-child(3) { height: 16px; opacity: 0.85; }
+      .signal span:nth-child(4) { height: 20px; }
+
+      .battery {
+        width: 34px;
+        height: 16px;
+        border-radius: 5px;
+        border: 2px solid var(--text);
+        padding: 2px;
+      }
+
+      .battery::after {
+        content: "";
+        display: block;
+        width: 18px;
+        height: 100%;
+        border-radius: 2px;
+        background: var(--text);
+      }
+
+      .screen-content {
+        position: absolute;
+        inset: 74px 0 0;
+        padding: 28px;
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 34px;
+        box-shadow: 0 14px 40px rgba(0,0,0,0.08);
+      }
+
+      .phone-home-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 26px;
+      }
+
+      .phone-greeting {
+        font-size: 36px;
+        line-height: 1.05;
+        letter-spacing: -0.05em;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      .phone-muted {
+        color: var(--muted);
+        font-size: 22px;
+        line-height: 1.45;
+      }
+
+      .hero-card {
+        position: relative;
+        height: 232px;
+        overflow: hidden;
+        color: white;
+        border-radius: 36px;
+        background:
+          linear-gradient(180deg, rgba(28, 33, 39, 0.68), rgba(18, 22, 28, 0.96)),
+          linear-gradient(145deg, #87918f, #222832 72%);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+      }
+
+      .hero-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 70% 18%, rgba(255,218,150,0.42), transparent 16%),
+          linear-gradient(180deg, rgba(255,255,255,0.06), transparent 42%);
+      }
+
+      .hero-card-inner {
+        position: relative;
+        z-index: 1;
+        padding: 26px;
+      }
+
+      .hero-card-title {
+        font-size: 38px;
+        line-height: 1;
+        font-weight: 700;
+        letter-spacing: -0.05em;
+      }
+
+      .hero-card-sub {
+        margin-top: 12px;
+        font-size: 21px;
+        color: rgba(255,255,255,0.78);
+      }
+
+      .hero-cta {
+        position: absolute;
+        right: 24px;
+        bottom: 24px;
+        width: 76px;
+        height: 76px;
+        border-radius: 999px;
+        background: #fff7e8;
+        color: #9d6517;
+        display: grid;
+        place-items: center;
+        font-size: 34px;
+        font-weight: 700;
+      }
+
+      .quick-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+        margin-top: 24px;
+      }
+
+      .mini-card {
+        border-radius: 28px;
+        border: 1px solid var(--border);
+        background: white;
+        padding: 16px 12px;
+        font-size: 18px;
+        text-align: center;
+        color: var(--text);
+      }
+
+      .mini-card .icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 16px;
+        margin: 0 auto 10px;
+        display: grid;
+        place-items: center;
+        font-size: 20px;
+      }
+
+      .session-card {
+        margin-top: 22px;
+        padding: 20px;
+        display: flex;
+        gap: 18px;
+        align-items: flex-start;
+      }
+
+      .session-thumb {
+        width: 92px;
+        height: 92px;
+        border-radius: 24px;
+        background:
+          linear-gradient(180deg, #eaf1f2 0%, #f4e8d3 45%, #4c6559 100%);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .session-thumb::before {
+        content: "";
+        position: absolute;
+        inset: auto -10% 0;
+        height: 44%;
+        background: linear-gradient(180deg, rgba(59, 79, 71, 0.94), rgba(32, 42, 39, 1));
+        border-radius: 100% 100% 0 0 / 70% 70% 0 0;
+      }
+
+      .session-title {
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -0.05em;
+        margin: 0 0 8px;
+      }
+
+      .session-copy {
+        color: var(--muted);
+        font-size: 18px;
+        line-height: 1.55;
+      }
+
+      .progress {
+        margin-top: 18px;
+        height: 10px;
+        border-radius: 999px;
+        background: #eee7dd;
+        overflow: hidden;
+      }
+
+      .progress > div {
+        height: 100%;
+        width: 60%;
+        background: linear-gradient(135deg, #f4c15d, #e59b2e);
+        border-radius: 999px;
+      }
+
+      .chat-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .bubble {
+        max-width: 84%;
+        padding: 20px 22px;
+        border-radius: 28px;
+        border: 1px solid var(--border);
+        background: var(--card);
+        font-size: 21px;
+        line-height: 1.6;
+        box-shadow: 0 12px 34px rgba(0,0,0,0.05);
+      }
+
+      .bubble.user {
+        margin-left: auto;
+        background: #fff4e5;
+        border-color: rgba(232,224,215,0.75);
+      }
+
+      .assistant-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+      }
+
+      .assistant-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 999px;
+        background: #16191e;
+        color: #f4c15d;
+        display: grid;
+        place-items: center;
+        font-size: 22px;
+        flex: 0 0 auto;
+      }
+
+      .timestamp {
+        font-size: 16px;
+        color: #888;
+        margin-left: 58px;
+      }
+
+      .reflection-wrap {
+        padding-top: 20px;
+      }
+
+      .reflection-card {
+        width: 100%;
+        padding: 28px;
+        border-radius: 40px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        box-shadow: 0 14px 38px rgba(70,45,20,0.08);
+      }
+
+      .label {
+        font-size: 16px;
+        color: var(--muted);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+
+      .question {
+        margin-top: 18px;
+        font-size: 42px;
+        line-height: 1.08;
+        letter-spacing: -0.05em;
+        font-weight: 700;
+      }
+
+      .secondary {
+        margin-top: 12px;
+        font-size: 21px;
+        color: var(--muted);
+        font-weight: 600;
+      }
+
+      .textarea {
+        margin-top: 24px;
+        height: 390px;
+        border-radius: 28px;
+        border: 1px solid var(--border);
+        background: white;
+        padding: 24px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        color: #999;
+        font-size: 20px;
+      }
+
+      .decision-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+        margin-top: 24px;
+      }
+
+      .decision-card {
+        min-height: 470px;
+        border-radius: 34px;
+        border: 1px solid var(--border);
+        background: var(--card);
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .decision-card .emoji {
+        width: 82px;
+        height: 82px;
+        border-radius: 999px;
+        background: #fff4e5;
+        display: grid;
+        place-items: center;
+        font-size: 38px;
+        margin: 0 auto 28px;
+      }
+
+      .decision-card h3 {
+        margin: 0;
+        text-align: center;
+        font-size: 32px;
+        line-height: 1.1;
+        letter-spacing: -0.05em;
+      }
+
+      .decision-card p {
+        margin-top: 22px;
+        text-align: center;
+        font-size: 22px;
+        line-height: 1.55;
+        color: var(--muted);
+      }
+
+      .decision-card .link {
+        margin-top: auto;
+        text-align: center;
+        color: var(--orange-deep);
+        font-size: 22px;
+        font-weight: 700;
+      }
+
+      .summary-card {
+        margin-top: 22px;
+        padding: 26px;
+        border-radius: 38px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        text-align: center;
+      }
+
+      .check-ring {
+        width: 110px;
+        height: 110px;
+        margin: 0 auto;
+        border-radius: 999px;
+        background: #fff7e8;
+        border: 1px solid rgba(232,224,215,0.9);
+        display: grid;
+        place-items: center;
+        color: #a66a19;
+        font-size: 58px;
+        font-weight: 700;
+      }
+
+      .summary-title {
+        margin-top: 34px;
+        font-size: 44px;
+        line-height: 1.04;
+        letter-spacing: -0.05em;
+        font-weight: 700;
+      }
+
+      .summary-sub {
+        margin-top: 12px;
+        font-size: 22px;
+        color: var(--muted);
+      }
+
+      .insight-box {
+        margin-top: 28px;
+        padding: 26px;
+        border-radius: 32px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        text-align: left;
+      }
+
+      .insight-box h4 {
+        margin: 0 0 14px;
+        font-size: 24px;
+      }
+
+      .insight-box ul {
+        margin: 0;
+        padding-left: 24px;
+        color: var(--text);
+        font-size: 21px;
+        line-height: 1.55;
+      }
+
+      .cta-line {
+        margin-top: 24px;
+        font-size: 20px;
+        color: var(--muted);
+      }
+
+      .summary-footer {
+        margin-top: 28px;
+        display: flex;
+        justify-content: center;
+        gap: 22px;
+        font-size: 20px;
+        color: var(--muted);
+      }
+    </style>
+
+    <div class="scene scene-1">
+      <div class="scene-inner">
+        <div class="brand">
+          <span>lifemode</span><span class="brand-dot"></span>
+        </div>
+        <div class="hero-title">Think clearly<br />about your life.</div>
+        <div class="subtitle">
+          Guided conversations and proven frameworks to help you make better decisions.
+        </div>
+        <div class="landscape">
+          <div class="mountain left"></div>
+          <div class="mountain right"></div>
+          <div class="silhouette"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scene scene-2">
+      <div class="scene-inner" style="padding-top: 116px;">
+        <div class="phone-shell">
+          <div class="phone-screen">
+            <div class="status-bar">
+              <span>9:41</span>
+              <div class="status-icons">
+                <div class="signal"><span></span><span></span><span></span><span></span></div>
+                <span style="font-size:18px;">⌁</span>
+                <div class="battery"></div>
+              </div>
+            </div>
+            <div class="screen-content">
+              <div class="phone-home-header">
+                <div style="width:30px;height:30px;border-radius:999px;background:#1d1d1f;opacity:.92;"></div>
+                <div style="width:30px;height:30px;border-radius:999px;background:#1d1d1f;opacity:.92;"></div>
+              </div>
+              <div class="phone-greeting">Good evening,<br />John.</div>
+              <div class="phone-muted">What do you need clarity on today?</div>
+              <div class="hero-card" style="margin-top:28px;">
+                <div class="hero-card-inner">
+                  <div class="hero-card-title">Start a session</div>
+                  <div class="hero-card-sub">Talk it through clearly</div>
+                </div>
+                <div class="hero-cta">→</div>
+              </div>
+              <div class="quick-row">
+                <div class="mini-card"><div class="icon" style="background:var(--blue)">💼</div>Career</div>
+                <div class="mini-card"><div class="icon" style="background:var(--pink)">♡</div>Relationships</div>
+                <div class="mini-card"><div class="icon" style="background:var(--green)">✦</div>Decision</div>
+                <div class="mini-card"><div class="icon" style="background:var(--purple)">◌</div>Anxiety</div>
+              </div>
+              <div class="card session-card">
+                <div class="session-thumb"></div>
+                <div style="flex:1;">
+                  <div class="session-title">Career Direction</div>
+                  <div class="session-copy">I’m not sure if I should keep pursuing this path.</div>
+                  <div class="progress"><div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scene scene-3">
+      <div class="scene-inner" style="padding-top: 116px;">
+        <div class="phone-shell">
+          <div class="phone-screen">
+            <div class="status-bar">
+              <span>9:41</span>
+              <div class="status-icons">
+                <div class="signal"><span></span><span></span><span></span><span></span></div>
+                <span style="font-size:18px;">⌁</span>
+                <div class="battery"></div>
+              </div>
+            </div>
+            <div class="screen-content">
+              <div style="text-align:center;font-size:26px;font-weight:700;letter-spacing:-0.04em;">Career Direction</div>
+              <div style="text-align:center;color:var(--muted);font-size:16px;margin-top:8px;">Quick clarity • 8:42</div>
+              <div class="chat-stack" style="margin-top:38px;">
+                <div class="assistant-row">
+                  <div class="assistant-icon">✦</div>
+                  <div class="bubble" id="bubble-1">Let's understand what's been on your mind.</div>
+                </div>
+                <div class="assistant-row" style="margin-top:4px;">
+                  <div class="assistant-icon">✦</div>
+                  <div class="bubble" id="bubble-2">What outcome are you afraid of?</div>
+                </div>
+                <div class="timestamp">9:41 AM</div>
+                <div class="bubble user" id="bubble-3">I feel like I'm not growing in my current job, but I'm afraid to make a change.</div>
+                <div class="assistant-row">
+                  <div class="assistant-icon">✦</div>
+                  <div class="bubble" id="bubble-4">That's important. Let's explore that deeper.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scene scene-4">
+      <div class="scene-inner" style="padding-top: 140px;">
+        <div class="phone-shell" style="width: 420px;height: 860px;">
+          <div class="phone-screen">
+            <div class="status-bar" style="font-size:20px;">
+              <span>9:41</span>
+              <div class="status-icons">
+                <div class="signal"><span></span><span></span><span></span><span></span></div>
+                <span style="font-size:16px;">⌁</span>
+                <div class="battery"></div>
+              </div>
+            </div>
+            <div class="screen-content">
+              <div class="reflection-wrap">
+                <div class="reflection-card">
+                  <div class="label">Reflection</div>
+                  <div class="question">What outcome are you afraid of?</div>
+                  <div class="secondary">Be honest. This is for you.</div>
+                  <div class="textarea">
+                    <span>Type your answer...</span>
+                    <span>0/300</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scene scene-5">
+      <div class="scene-inner" style="padding-top: 124px;">
+        <div class="phone-shell" style="width: 600px;height: 860px;">
+          <div class="phone-screen">
+            <div class="status-bar" style="font-size:20px;">
+              <span>9:41</span>
+              <div class="status-icons">
+                <div class="signal"><span></span><span></span><span></span><span></span></div>
+                <span style="font-size:16px;">⌁</span>
+                <div class="battery"></div>
+              </div>
+            </div>
+            <div class="screen-content" style="padding-top: 34px;">
+              <div style="text-align:center;font-size:28px;font-weight:700;letter-spacing:-0.04em;">Let’s look at both sides.</div>
+              <div style="text-align:center;color:var(--muted);font-size:19px;margin-top:10px;">There’s no right or wrong answer.</div>
+              <div class="decision-grid">
+                <div class="decision-card" id="decision-left">
+                  <div class="emoji">🌿</div>
+                  <h3>Stay in Current Path</h3>
+                  <p>What are the pros of staying?</p>
+                  <div class="link">Explore →</div>
+                </div>
+                <div class="decision-card" id="decision-right">
+                  <div class="emoji">⛰️</div>
+                  <h3>Make a Change</h3>
+                  <p>What are the pros of changing?</p>
+                  <div class="link">Explore →</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scene scene-6">
+      <div class="scene-inner" style="padding-top: 116px;">
+        <div class="phone-shell" style="width: 520px;height: 960px;">
+          <div class="phone-screen">
+            <div class="status-bar" style="font-size:20px;">
+              <span>9:41</span>
+              <div class="status-icons">
+                <div class="signal"><span></span><span></span><span></span><span></span></div>
+                <span style="font-size:16px;">⌁</span>
+                <div class="battery"></div>
+              </div>
+            </div>
+            <div class="screen-content" style="padding-top: 32px;">
+              <div class="summary-card">
+                <div class="check-ring" id="summary-check">✓</div>
+                <div class="summary-title">Great session, John!</div>
+                <div class="summary-sub">Here’s what you discovered.</div>
+                <div class="insight-box">
+                  <h4>Key Insights</h4>
+                  <ul>
+                    <li>You value growth and impact.</li>
+                    <li>You fear stability more than failure.</li>
+                    <li>You’re ready for change, but want more clarity on direction.</li>
+                  </ul>
+                </div>
+                <div class="insight-box">
+                  <h4>Suggested Next Step</h4>
+                  <div class="cta-line">Explore roles aligned with your strengths and values.</div>
+                </div>
+                <div class="summary-footer">
+                  <span>Talk it through clearly</span>
+                  <span>lifemode.io</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+
+      tl.fromTo(".scene-1", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.35 }, 0);
+      tl.fromTo(".scene-1 .brand", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.35 }, 0.1);
+      tl.fromTo(".scene-1 .hero-title", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.35 }, 0.2);
+      tl.fromTo(".scene-1 .subtitle", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.32 }, 0.35);
+      tl.fromTo(".scene-1 .landscape", { opacity: 0, y: 32 }, { opacity: 1, y: 0, duration: 0.4 }, 0.28);
+
+      tl.to(".scene-1", { opacity: 0, y: -14, duration: 0.3 }, 1.7);
+      tl.fromTo(".scene-2", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.4 }, 1.9);
+      tl.fromTo(".scene-2 .phone-shell", { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.35 }, 2.0);
+      tl.fromTo(".scene-2 .hero-card", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.35 }, 2.15);
+      tl.fromTo(".scene-2 .quick-row", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.35 }, 2.35);
+      tl.fromTo(".scene-2 .session-card", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.35 }, 2.55);
+
+      tl.to(".scene-2", { opacity: 0, y: -18, duration: 0.3 }, 4.55);
+      tl.fromTo(".scene-3", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.35 }, 4.75);
+      tl.fromTo(".scene-3 .phone-shell", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.35 }, 4.86);
+      tl.fromTo("#bubble-1", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.28 }, 5.05);
+      tl.fromTo("#bubble-2", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.28 }, 5.38);
+      tl.fromTo("#bubble-3", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.28 }, 5.75);
+      tl.fromTo("#bubble-4", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.28 }, 6.35);
+
+      tl.to(".scene-3", { opacity: 0, y: -18, duration: 0.3 }, 7.7);
+      tl.fromTo(".scene-4", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.35 }, 7.92);
+      tl.fromTo(".scene-4 .reflection-card", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.36 }, 8.05);
+
+      tl.to(".scene-4", { opacity: 0, y: -18, duration: 0.3 }, 10.75);
+      tl.fromTo(".scene-5", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.35 }, 10.95);
+      tl.fromTo("#decision-left", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.3 }, 11.2);
+      tl.fromTo("#decision-right", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.3 }, 11.42);
+
+      tl.to(".scene-5", { opacity: 0, y: -18, duration: 0.3 }, 12.95);
+      tl.fromTo(".scene-6", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.35 }, 13.15);
+      tl.fromTo("#summary-check", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.3 }, 13.3);
+      tl.fromTo(".summary-title", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3 }, 13.55);
+      tl.fromTo(".summary-sub", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.3 }, 13.68);
+      tl.fromTo(".summary-card .insight-box:nth-of-type(1)", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.3 }, 13.88);
+      tl.fromTo(".summary-card .insight-box:nth-of-type(2)", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.3 }, 14.12);
+      tl.fromTo(".summary-footer", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.3 }, 14.38);
+
+      window.__timelines["lifemode-intro"] = tl;
+    </script>
+  </div>
+</template>
