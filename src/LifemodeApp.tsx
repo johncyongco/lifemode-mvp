@@ -1808,7 +1808,7 @@ function ChatScreen({
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Type your message..."
-            className="flex h-12 flex-1 items-center rounded-2xl border bg-white px-4 text-xs outline-none placeholder:text-[#999]"
+            className="flex h-12 flex-1 items-center rounded-2xl border bg-white px-4 text-[16px] outline-none placeholder:text-[#999]"
             style={{ borderColor: colors.border }}
             onKeyDown={(e) => { if (e.key === "Enter") handleSend(); }}
             disabled={waiting || showChoice || showFinalChoice}

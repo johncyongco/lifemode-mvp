@@ -532,7 +532,7 @@ function ChatScreen({ setScreen }: { setScreen: (screen: Screen) => void }) {
           <div className="ml-10 text-[10px] text-[#888]">{new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</div>
         </div>
         <div className="flex shrink-0 items-center gap-2 px-5 pb-6 pt-2">
-          <div className="flex h-12 flex-1 items-center rounded-2xl border bg-white px-4 text-xs text-[#999]" style={{ borderColor: colors.border }}>
+          <div className="flex h-12 flex-1 items-center rounded-2xl border bg-white px-4 text-[16px] text-[#999]" style={{ borderColor: colors.border }}>
             Type your message...
             <Mic className="ml-auto" size={16} />
           </div>
