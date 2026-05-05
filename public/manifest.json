@@ -4,8 +4,8 @@
   "description": "Think clearly about your life.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#BFE9E1",
-  "theme_color": "#BFE9E1",
+  "background_color": "#E2FFF9",
+  "theme_color": "#E2FFF9",
   "icons": [
     {
       "src": "/icon.svg",
