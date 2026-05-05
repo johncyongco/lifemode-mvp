@@ -86,39 +86,8 @@ const screens: { key: Screen; label: string }[] = [
   { key: "preferences", label: "Preferences" },
 ];
 
-function StatusBar({ dark = false }: { dark?: boolean }) {
-  return (
-    <div className={`flex items-center justify-between px-5 pt-3 text-[12px] font-semibold ${dark ? "text-white" : "text-[#1D1D1F]"}`}>
-      <span>9:41</span>
-      <div className="flex items-center gap-1.5">
-        <div className="flex items-end gap-0.5">
-          <span className={`block h-1.5 w-1 rounded-sm ${dark ? "bg-white" : "bg-black"}`} />
-          <span className={`block h-2 w-1 rounded-sm ${dark ? "bg-white" : "bg-black"}`} />
-          <span className={`block h-2.5 w-1 rounded-sm ${dark ? "bg-white" : "bg-black"}`} />
-        </div>
-        <span className="text-[11px]">⌁</span>
-        <div className={`h-2.5 w-5 rounded-[3px] border ${dark ? "border-white" : "border-black"}`}>
-          <div className={`m-[1px] h-[6px] w-3.5 rounded-[2px] ${dark ? "bg-white" : "bg-black"}`} />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function PhoneFrame({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
-  return (
-    <div className="mx-auto w-full max-w-[390px]">
-      <div
-        className="min-h-[844px] overflow-hidden rounded-[28px] border shadow-[0_12px_40px_rgba(0,0,0,0.08)]"
-        style={{
-          background: dark ? colors.dark : colors.bg,
-          borderColor: dark ? "#2c3138" : colors.border,
-        }}
-      >
-        {children}
-      </div>
-    </div>
-  );
+function PhoneFrame({ children }: { children: React.ReactNode }) {
+  return <div className="w-full">{children}</div>;
 }
 
 function PrimaryButton({
@@ -245,7 +214,6 @@ function ScreenShell({
 }) {
   return (
     <div className="relative min-h-[844px] pb-[86px]">
-      <StatusBar dark={dark} />
       {children}
       {nav && active ? <BottomNav active={active} setScreen={setScreen} /> : null}
     </div>
@@ -284,7 +252,6 @@ function Landing({ setScreen }: { setScreen: (screen: Screen) => void }) {
   return (
     <PhoneFrame>
       <div className="relative min-h-[844px] overflow-hidden">
-        <StatusBar />
         <div className="px-7 pt-14">
           <div className="flex items-center gap-1 text-[28px] font-semibold tracking-[-0.04em]">
             lifemode <span className="mt-1 h-3 w-3 rounded-full bg-[#E9A23B]" />
@@ -541,7 +508,6 @@ function ChatScreen({ setScreen }: { setScreen: (screen: Screen) => void }) {
   return (
     <PhoneFrame>
       <div className="relative min-h-[844px]">
-        <StatusBar />
         <Header title="Career Direction" subtitle="Quick clarity • 8:42" onBack={() => setScreen("home")} />
         <div className="px-5 pt-7 space-y-3">
           <div className="relative">
@@ -551,11 +517,11 @@ function ChatScreen({ setScreen }: { setScreen: (screen: Screen) => void }) {
             <Assistant>Let’s start by understanding what’s been on your mind.</Assistant>
           </div>
           <Assistant>What’s the main challenge you’re facing right now?</Assistant>
-          <div className="ml-10 text-[10px] text-[#888]">9:41 AM</div>
+          <div className="ml-10 text-[10px] text-[#888]">{new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</div>
           <div className="ml-auto max-w-[245px] rounded-2xl bg-[#FFF4E5] px-4 py-3 text-xs leading-5">
             I feel like I’m not growing in my current job, but I’m afraid to make a change.
           </div>
-          <div className="text-right text-[10px] text-[#888]">9:41 AM</div>
+          <div className="text-right text-[10px] text-[#888]">{new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</div>
           <div className="relative pt-3">
             <div className="absolute left-0 top-4 grid h-7 w-7 place-items-center rounded-full bg-[#16191E]">
               <Sparkles size={14} color="#F4C15D" fill="#F4C15D" />
@@ -563,7 +529,7 @@ function ChatScreen({ setScreen }: { setScreen: (screen: Screen) => void }) {
             <Assistant>That’s important. Let’s explore that deeper.</Assistant>
           </div>
           <Assistant>What part of staying feels safest right now?</Assistant>
-          <div className="ml-10 text-[10px] text-[#888]">9:42 AM</div>
+          <div className="ml-10 text-[10px] text-[#888]">{new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</div>
         </div>
         <div className="absolute bottom-6 left-5 right-5 flex items-center gap-2">
           <div className="flex h-12 flex-1 items-center rounded-2xl border bg-white px-4 text-xs text-[#999]" style={{ borderColor: colors.border }}>
@@ -583,7 +549,6 @@ function ReflectionScreen({ setScreen }: { setScreen: (screen: Screen) => void }
   return (
     <PhoneFrame>
       <div className="relative min-h-[844px]">
-        <StatusBar />
         <Header title="Career Direction" subtitle="Quick clarity • 12:15" onBack={() => setScreen("chat")} />
         <div className="px-6 pt-16">
           <div className="rounded-3xl border bg-[#FEFCFA] p-7 shadow-[0_12px_35px_rgba(70,45,20,0.08)]" style={{ borderColor: colors.border }}>
@@ -608,7 +573,6 @@ function DecisionScreen({ setScreen }: { setScreen: (screen: Screen) => void }) 
   return (
     <PhoneFrame>
       <div className="relative min-h-[844px]">
-        <StatusBar />
         <Header title="Career Direction" subtitle="Deep session • 18:20" onBack={() => setScreen("reflection")} />
         <div className="px-6 pt-12">
           <h2 className="text-[24px] font-bold tracking-[-0.03em]">Let’s look at both sides.</h2>
@@ -912,7 +876,6 @@ function Premium({ setScreen }: { setScreen: (screen: Screen) => void }) {
   return (
     <PhoneFrame dark>
       <div className="min-h-[844px] text-white">
-        <StatusBar dark />
         <div className="px-6 pt-14">
           <h2 className="text-[28px] font-bold">Upgrade to Premium</h2>
           <p className="mt-2 text-sm text-white/70">Unlock your full potential.</p>
